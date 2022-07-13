@@ -37,22 +37,3 @@ export default function DeleteEditBoard({
     </ModalLayout>
   );
 }
-
-/* <DeleteEditBoardWrapper
-      open={openModal}
-      onClose={handleClose}
-      disableAutoFocus={true}
-    >
-      <Box sx={style}>
-        <button className="edit-board">Edit Board</button>
-
-        <button onClick={handleOpenDelete} className="delete-board">
-          Delete Board
-        </button>
-        <DeleteBoard
-          openDeleteModal={openDeleteModal}
-          handleCloseDelete={handleCloseDelete}
-          handleClose={handleClose}
-        />
-      </Box>
-    </DeleteEditBoardWrapper> */

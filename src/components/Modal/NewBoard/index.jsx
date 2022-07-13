@@ -17,11 +17,17 @@ export default function NewBoard({ handleClose, open }) {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    await addDocument({
-      name,
-      columns,
-    });
-
+    if (columns.length === 0) {
+      await addDocument({
+        name,
+        columns: [],
+      });
+    } else {
+      await addDocument({
+        name,
+        columns,
+      });
+    }
     handleClose();
   };
 

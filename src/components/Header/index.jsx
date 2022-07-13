@@ -9,12 +9,15 @@ import { HeaderWrapper } from "./style";
 import { headerVariants } from "./motion";
 import Button from "../Button/Button";
 import NewTask from "../Modal/NewTask";
+import { useParams, Link } from "react-router-dom";
 
 export default function Header({ open, documents }) {
+  const { id } = useParams();
   // Define state for individual modal
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openModalTask, setOpenModalTask] = useState(false);
+  const [openEditBoard, setOpenEditBoard] = useState(false);
 
   // Handle Modal/DeleteEditBoard
   const handleOpen = () => setOpenModal(true);
@@ -30,6 +33,9 @@ export default function Header({ open, documents }) {
   // Handle ModalTask
   const handleOpenTask = () => setOpenModalTask(true);
   const handleCloseTask = () => setOpenModalTask(false);
+
+  // Handle EditTask
+  const handleCloseEdit = () => setOpenEditBoard(false);
 
   return (
     <AnimatePresence>
@@ -48,13 +54,15 @@ export default function Header({ open, documents }) {
                 transition: { delay: 2, duration: 0.3 },
               }}
             >
-              <motion.img
-                variants={headerVariants}
-                animate="open"
-                exit="closed"
-                src={LogoDark}
-                alt=""
-              />
+              <Link to="/">
+                <motion.img
+                  variants={headerVariants}
+                  animate="open"
+                  exit="closed"
+                  src={LogoDark}
+                  alt=""
+                />
+              </Link>
             </motion.div>
           ) : null}
           <h1>Platform Launch</h1>
@@ -67,6 +75,7 @@ export default function Header({ open, documents }) {
             color={"#fff"}
             text="+ add new task"
             action={handleOpenTask}
+            disabled={!id ? true : false}
           />
 
           <NewTask

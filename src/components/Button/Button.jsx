@@ -23,6 +23,7 @@ export default function Button({
   color,
   text,
   action,
+  disabled,
 }) {
   return (
     <ButtonWrapper
@@ -31,6 +32,7 @@ export default function Button({
       bgColor={bgColor}
       color={color}
       onClick={action}
+      disabled={disabled}
     >
       {text}
     </ButtonWrapper>

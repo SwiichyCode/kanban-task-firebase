@@ -44,7 +44,7 @@ export default function App() {
 
           <Main open={open}>
             <Header open={open} documents={documents} />
-            <Board />
+            <Board documents={documents} />
           </Main>
         </Container>
       </ThemeProvider>

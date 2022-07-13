@@ -6,28 +6,30 @@ import EmptyBoard from "./EmptyBoard";
 
 import { BoardWrapper } from "./style";
 import TaskCard from "../CardTask";
-export default function Board() {
+export default function Board({ documents }) {
   const { id } = useParams();
   const { document } = useDocument("boards", id);
 
   return (
-    <BoardWrapper>
-      {document && document.columns ? (
-        <ul className="content-column">
-          {document &&
-            document.columns.map((item) => (
-              <li className="column">
-                <h3 className="column-name">{item.name}</h3>
+    <>
+      <BoardWrapper>
+        {document && document.columns ? (
+          <ul className="content-column">
+            {document &&
+              document.columns.map((item) => (
+                <li className="column">
+                  <h3 className="column-name">{item.name}</h3>
 
-                {item.task.map((task) => (
-                  <TaskCard task={task} />
-                ))}
-              </li>
-            ))}
-        </ul>
-      ) : (
-        <EmptyBoard />
-      )}
-    </BoardWrapper>
+                  {item.task.map((task) => (
+                    <TaskCard task={task} />
+                  ))}
+                </li>
+              ))}
+          </ul>
+        ) : (
+          <EmptyBoard id={id} documents={documents} />
+        )}
+      </BoardWrapper>
+    </>
   );
 }

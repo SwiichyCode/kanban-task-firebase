@@ -10,6 +10,7 @@ import MoonIcon from "../../assets/icon-dark-theme.svg";
 import ShowIcon from "../../assets/icon-hide-sidebar.svg";
 
 import { SidebarWrapper } from "./style";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({
   open,
@@ -43,7 +44,9 @@ export default function Sidebar({
             >
               <motion.div className="sidebar-top" variants={itemVariants}>
                 <motion.div className="sidebar-logo">
-                  <img src={LogoDark} alt="" />
+                  <Link to="/">
+                    <img src={LogoDark} alt="" />
+                  </Link>
                 </motion.div>
                 <div className="sidebar-nav">
                   <h3>all boards ({documents && documents.length})</h3>

@@ -12,15 +12,9 @@ export const useSubtasks = () => {
   let addFormFields = () => {
     setColumns([
       ...columns,
+
       {
-        task: [
-          {
-            title: "",
-            description: "",
-            status: "",
-            subtasks: [{ title: "", isCompleted: true }],
-          },
-        ],
+        task: [],
       },
     ]);
   };
