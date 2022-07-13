@@ -6,6 +6,7 @@ import EmptyBoard from "./EmptyBoard";
 
 import { BoardWrapper } from "./style";
 import TaskCard from "../CardTask";
+import CreateColumn from "./CreateColumn";
 export default function Board({ documents }) {
   const { id } = useParams();
   const { document } = useDocument("boards", id);
@@ -25,6 +26,7 @@ export default function Board({ documents }) {
                   ))}
                 </li>
               ))}
+            <CreateColumn />
           </ul>
         ) : (
           <EmptyBoard id={id} documents={documents} />

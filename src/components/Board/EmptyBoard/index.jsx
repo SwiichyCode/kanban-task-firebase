@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../Button/Button";
+import CreateBoard from "../CreateBoard/index";
 import { EmptyBoardWrapper } from "./style";
 
 export default function EmptyBoard({ id, documents }) {
@@ -18,7 +19,7 @@ export default function EmptyBoard({ id, documents }) {
       ) : documents && documents.length > 0 ? (
         <p>Navigate</p>
       ) : (
-        <p>Create</p>
+        <CreateBoard />
       )}
     </EmptyBoardWrapper>
   );
