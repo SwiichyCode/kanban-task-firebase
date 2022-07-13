@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from "react";
+import styled from "styled-components";
+import { useCycle } from "framer-motion";
+import { ThemeProvider } from "styled-components";
 
-function App() {
+import { light, dark } from "./styles/theme";
+import useLocalStorageState from "./utils/useLocalStorageState";
+import { useCollection } from "./hooks/useCollection";
+
+import Sidebar from "./components/Sidebar";
+import SidebarShow from "./components/Sidebar/SidebarShow/index";
+import Header from "./components/Header";
+import Board from "./components/Board";
+
+const themesMap = {
+  light,
+  dark,
+};
+
+export const ThemePreferenceContext = createContext();
+
+export default function App() {
+  const { documents } = useCollection("boards");
+  const [open, cycleOpen] = useCycle(true, false);
+  const [currentTheme, setCurrentTheme] = useLocalStorageState(
+    "theme",
+    "light"
+  );
+
+  const theme = { colors: themesMap[currentTheme] };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemePreferenceContext.Provider value={{ currentTheme, setCurrentTheme }}>
+      <ThemeProvider theme={theme}>
+        <Container>
+          <Sidebar
+            open={open}
+            cycleOpen={cycleOpen}
+            currentTheme={currentTheme}
+            setCurrentTheme={setCurrentTheme}
+            documents={documents}
+          />
+          {!open ? <SidebarShow cycleOpen={cycleOpen} /> : null}
+
+          <Main open={open}>
+            <Header open={open} documents={documents} />
+            <Board />
+          </Main>
+        </Container>
+      </ThemeProvider>
+    </ThemePreferenceContext.Provider>
   );
 }
 
-export default App;
+const Container = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+`;
+
+const Main = styled.main`
+  width: ${(props) => (props.open ? "calc(100% - 300px)" : "100%")};
+  transition: 200ms ease-in-out;
+`;
