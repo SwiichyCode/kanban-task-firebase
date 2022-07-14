@@ -7,6 +7,7 @@ import { useSubtasks } from "../../../hooks/useSubtasks";
 import { MdClose } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useDocument } from "../../../hooks/useDocument";
+import Dropdown from "../../Dropdown/Dropdown";
 
 export default function NewTask({ openModalTask, handleCloseTask }) {
   const { id } = useParams();
@@ -53,7 +54,7 @@ export default function NewTask({ openModalTask, handleCloseTask }) {
             <button type="button" onClick={addFormFields} className="addFields">
               + Add fields
             </button>
-            {/* <CustomSelect /> */}
+            <Dropdown document={document} />
           </NewTaskWrapper>
         </ModalLayout>
       ) : null}

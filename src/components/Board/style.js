@@ -35,18 +35,10 @@ export const BoardWrapper = styled.div`
         }
       }
     }
-
-    .dot {
-      display: block;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: ${({ randomColor }) => `#${randomColor()}`};
-    }
   }
 `;
 
-export const DotWrapper = styled.siv`
+export const DotWrapper = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 50%;
