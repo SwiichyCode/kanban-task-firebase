@@ -33,11 +33,7 @@ export default function NewTask({ openModalTask, handleCloseTask }) {
             />
             <TextArea labelOn={true} labelText={"description"} />
             <div className="content-input">
-              <label for="name">Columns</label>
-              {console.log(
-                document.columns && document.columns.map((item) => item.name)
-              )}
-
+              <label for="name">Subtasks</label>
               {columns.map((item, index) => (
                 <div className="input" key={index}>
                   <input

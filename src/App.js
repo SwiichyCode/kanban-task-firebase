@@ -10,7 +10,7 @@ import { useCollection } from "./hooks/useCollection";
 import Sidebar from "./components/Sidebar";
 import SidebarShow from "./components/Sidebar/SidebarShow/index";
 import Header from "./components/Header";
-import Board from "./components/Board";
+import Board from "./components/Board/Board";
 
 const themesMap = {
   light,
